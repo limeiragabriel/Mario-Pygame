@@ -279,6 +279,7 @@ class Level1(tools._State):
 
         koopa0 = enemies.Koopa()
 
+        """===============adicionando inimigos aos grupos ================="""
         enemy_group1 = pg.sprite.Group(goomba0)
         enemy_group2 = pg.sprite.Group(goomba1)
         enemy_group3 = pg.sprite.Group(goomba2, goomba3)
@@ -422,9 +423,12 @@ class Level1(tools._State):
         """ ============ detecta colisao com checkpoint ==========="""
         checkpoint = pg.sprite.spritecollideany(self.mario,
                                                  self.check_point_group)
+
+        """================ao colidir com chek==============="""
         if checkpoint:
             checkpoint.kill()
 
+            """=====================verifica qual chek e cria inimigos========================"""
             for i in range(1,11):
                 if checkpoint.name == str(i):
                     for index, enemy in enumerate(self.enemy_group_list[i -1]):
@@ -1321,7 +1325,7 @@ class Level1(tools._State):
         if self.game_info[c.PONTOS] > self.persist[c.MAIOR_PONTUACAO]:
             self.persist[c.MAIOR_PONTUACAO] = self.game_info[c.PONTOS]
         if self.mario.dead:
-            self.persist[c.VIDAS] -= 1
+            self.persist[c.VIDAS] -= 1 ''' se o mario morrer -1 de vida '''
 
         if self.persist[c.VIDAS] == 0:
             self.next = c.GAME_OVER
